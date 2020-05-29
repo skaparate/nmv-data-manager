@@ -100,12 +100,6 @@ class Main {
 
 		$this->load_text_domain();
 		$this->register_controllers();
-
-		// if ( is_admin() ) {
-		// $this->do_admin();
-		// } else {
-		// $this->do_front();
-		// }
 	}
 
 	/**
