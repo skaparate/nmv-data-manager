@@ -1,0 +1,31 @@
+name: nmv-data-manager
+recipe: wordpress
+services:
+  appserver:
+    webroot: wordpress
+    xdebug: true
+    config:
+      php: ./.lando/php.ini
+    overrides:
+      volumes:
+        - ./:/app/wordpress/wp-content/plugins/nmv-data-manager
+        - /app/wordpress/wp-content/plugins/nmv-data-manager/wordpress
+    depends_on:
+      - database
+    build_as_root:
+      - apt-get update -y && apt-get install -y subversion
+      - chmod +x /app/.lando/post_start.sh
+  phpmyadmin:
+    type: phpmyadmin:5.0
+    hosts:
+      - database
+events:
+  post-start:
+    - /app/.lando/post_start.sh
+env_file:
+  - .env
+tooling:
+  phpunitd:
+    service: appserver
+    cmd: php -d xdebug.remote_port=9000 vendor/bin/phpunit
+    description: Runs PHPUnit tests in debug mode

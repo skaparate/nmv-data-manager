@@ -1,0 +1,24 @@
+{
+  "name": "nicomv/data_manager",
+  "description": "A test project for Formidable Forms",
+  "require-dev": {
+    "dealerdirect/phpcodesniffer-composer-installer": "*",
+    "wp-coding-standards/wpcs": "*",
+    "phpcompatibility/php-compatibility": "*",
+    "phpcompatibility/phpcompatibility-wp": "*",
+    "phpunit/phpunit": "^9",
+    "vlucas/phpdotenv": "^4.1"
+  },
+  "prefer-stable": true,
+  "scripts": {
+    "post-install-cmd": [
+      "curl -Lo tools/phpab.phar https://github.com/theseer/Autoload/releases/download/1.25.9/phpab-1.25.9.phar"
+    ],
+    "test": "lando php vendor/bin/phpunit",
+    "update-autoloader": "lando php tools/phpab.phar -o src/autoload.php src/"
+  },
+  "scripts-descriptions": {
+    "test": "Run the project tests",
+    "update-autoloader": "Updates the project autoloading function"
+  }
+}
