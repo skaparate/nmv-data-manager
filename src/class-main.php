@@ -55,12 +55,10 @@ class Main {
 	private static $instance = null;
 
 	/**
-	 * The cache service in use.
+	 * Holds the instances to the provided plugin shortcodes.
 	 *
-	 * @var Nicomv\Data_Manager\Includes\Cache\Cache_Service
+	 * @var array
 	 */
-	private $cache_service = null;
-
 	private $shortcode_instances = array();
 
 	/**
@@ -154,7 +152,7 @@ class Main {
 	 * Register controllers.
 	 */
 	private function register_controllers() {
-		$data_service         = new Data_Service( $this->cache_service );
+		$data_service         = new Data_Service();
 		$challenge_controller = new Challenge_Controller( $data_service );
 		add_action( 'wp_ajax_' . self::ACTION_CHALLENGE_GET, array( $challenge_controller, 'get' ) );
 		add_action( 'wp_ajax_nopriv_' . self::ACTION_CHALLENGE_GET, array( $challenge_controller, 'get' ) );
