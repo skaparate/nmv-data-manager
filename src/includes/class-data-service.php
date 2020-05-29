@@ -47,7 +47,7 @@ class Data_Service {
 	 * @param int $expires How much time to retain the cached data. Default: 1 hour.
 	 */
 	public function __construct( $expires = 3600 ) {
-		$this->cache_name = 'nmv_datamanager_get_challenge';
+		$this->cache_name = esc_url( self::APIURI );
 		$this->expires    = is_int( $expires ) ? $expires : 3600;
 	}
 
