@@ -7,6 +7,8 @@ spl_autoload_register(
         static $classes = null;
         if ($classes === null) {
             $classes = array(
+                'commands' => '/includes/class-commands.php',
+                'nicomv\\data_manager\\controllers\\admin_controller' => '/controllers/class-admin-controller.php',
                 'nicomv\\data_manager\\controllers\\challenge_controller' => '/controllers/class-challenge-controller.php',
                 'nicomv\\data_manager\\includes\\data_service' => '/includes/class-data-service.php',
                 'nicomv\\data_manager\\includes\\template_utils' => '/includes/class-template-utils.php',

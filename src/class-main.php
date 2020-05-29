@@ -8,6 +8,7 @@
 
 namespace Nicomv\Data_Manager;
 
+use Commands;
 use Nicomv\Data_Manager\Controllers\Challenge_Controller;
 use Nicomv\Data_Manager\Includes\Data_Service;
 use Nicomv\Data_Manager\Shortcodes\Data_Manager;
@@ -98,8 +99,13 @@ class Main {
 			return;
 		}
 
-		$this->load_text_domain();
-		$this->register_controllers();
+		if ( defined( 'WP_CLI' ) && WP_CLI ) {
+			$commands = Commands::instance();
+			$commands->register();
+		} else {
+			$this->load_text_domain();
+			$this->register_controllers();
+		}
 	}
 
 	/**
