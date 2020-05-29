@@ -12,6 +12,8 @@
 	<exclude-pattern>/node_modules/</exclude-pattern>
 	<exclude-pattern>/tools</exclude-pattern>
 	<exclude-pattern>./**/index.php</exclude-pattern>
+	<exclude>./wordpress/</exclude>
+	<exclude>./test-lib</exclude>
 
 	<!-- How to scan -->
 	<!-- Usage instructions: https://github.com/squizlabs/PHP_CodeSniffer/wiki/Usage -->
