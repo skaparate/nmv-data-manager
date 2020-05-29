@@ -8,7 +8,6 @@
 $dotenv = Dotenv\Dotenv::createImmutable( NMV_DATA_MANAGER, '.env' );
 $dotenv->load();
 
-require_once NMV_DATA_MANAGER . '/src/autoload.php';
 require_once NMV_DATA_MANAGER . '/vendor/autoload.php';
 
 $wp_test_libs = NMV_DATA_MANAGER . DIRECTORY_SEPARATOR . $_ENV['WP_TEST_LIBS_DIR'];
