@@ -67,3 +67,8 @@ The administration (wp-admin) credentials are the ones provided on the `.env` fi
 
 1. Go to the plugins and enable the NMV Data Manager plugin (or run `lando wp plugin activate nmv-data-manager`).
 2. On any page, add the shortcode `[nmv_data_manager]` and preview the results.
+
+## Sample
+
+### Front End
+![Front end shortcode displaying the requested data](/assets/img/nmv-data-manager_frontend.png "Front End Shortcode")
