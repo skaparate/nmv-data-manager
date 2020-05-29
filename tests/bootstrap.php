@@ -5,9 +5,6 @@
  * @package Nicomv\Data_Manager\Tests
  */
 
-define( 'NMV_DATA_MANAGER', dirname( dirname( __FILE__ ) ) );
-define( 'ABSPATH', 'wp' );
-
 $dotenv = Dotenv\Dotenv::createImmutable( NMV_DATA_MANAGER, '.env' );
 $dotenv->load();
 
