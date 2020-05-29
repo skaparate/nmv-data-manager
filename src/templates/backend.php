@@ -8,3 +8,6 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
+?>
+
+<h2><?php esc_html_e( 'Data Manager', 'nmv-data-manager' ); ?></h2>

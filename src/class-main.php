@@ -9,6 +9,7 @@
 namespace Nicomv\Data_Manager;
 
 use Commands;
+use Nicomv\Data_Manager\Controllers\Admin_Controller;
 use Nicomv\Data_Manager\Controllers\Challenge_Controller;
 use Nicomv\Data_Manager\Includes\Data_Service;
 use Nicomv\Data_Manager\Shortcodes\Data_Manager;
@@ -129,13 +130,6 @@ class Main {
 	}
 
 	/**
-	 * Check if the PHP version is equal or higher than the required by the plugin.
-	 */
-	private function is_php_version_requirement_met() {
-		return version_compare( PHP_VERSION, self::MIN_PHP_VERSION, '>=' );
-	}
-
-	/**
 	 * Load the plugin text domain for translation.
 	 *
 	 * @since    1.0.0
@@ -149,19 +143,40 @@ class Main {
 	}
 
 	/**
+	 * Registers the administration options.
+	 */
+	public function on_admin_menu() {
+		error_log( 'DATA_MANAGER, Main - Administration page ' );
+		$admin_controller = new Admin_Controller();
+		add_menu_page(
+			__( 'NMV Data Manager', 'nmv-data-manager' ),
+			__( 'Data Manager', 'nmv-data-manager' ),
+			'manage_options',
+			'nmv-data-manager',
+			array( $admin_controller, 'admin_page' ),
+			'',
+			null
+		);
+	}
+
+	/**
+	 * Check if the PHP version is equal or higher than the required by the plugin.
+	 */
+	private function is_php_version_requirement_met() {
+		return version_compare( PHP_VERSION, self::MIN_PHP_VERSION, '>=' );
+	}
+
+	/**
 	 * Register controllers.
 	 */
 	private function register_controllers() {
 		$data_service         = new Data_Service();
 		$challenge_controller = new Challenge_Controller( $data_service );
 		add_action( 'wp_ajax_' . self::ACTION_CHALLENGE_GET, array( $challenge_controller, 'get' ) );
-		add_action( 'wp_ajax_nopriv_' . self::ACTION_CHALLENGE_GET, array( $challenge_controller, 'get' ) );
-	}
 
-	/**
-	 * Runs the administration tasks.
-	 */
-	private function do_admin() {
+		if ( ! is_admin() ) {
+			add_action( 'wp_ajax_nopriv_' . self::ACTION_CHALLENGE_GET, array( $challenge_controller, 'get' ) );
+		}
 	}
 
 	/**
@@ -182,17 +197,6 @@ class Main {
 		foreach ( $this->shortcode_instances as $name => $instance ) {
 			$instance->enqueue_scripts();
 			$instance->enqueue_styles();
-		}
-	}
-
-	/**
-	 * Getters for this class.
-	 *
-	 * @param string $name The name of the property being retrieved.
-	 */
-	public function __get( $name ) {
-		if ( 'cache_service' === $name ) {
-			return $this->cache_service;
 		}
 	}
 }
