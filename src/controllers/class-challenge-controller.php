@@ -27,6 +27,13 @@ class Challenge_Controller {
 	private $data_service = '';
 
 	/**
+	 * Action name for retrieving the data.
+	 *
+	 * @var string
+	 */
+	const ACTION_GET = 'nmv-datamanager_get';
+
+	/**
 	 * Builds an instance of this controller.
 	 *
 	 * @param Data_Service $data_service The service used that handles the

@@ -7,6 +7,7 @@
 
 namespace Nicomv\Data_Manager\Shortcodes;
 
+use Nicomv\Data_Manager\Controllers\Challenge_Controller;
 use Nicomv\Data_Manager\Includes\Template_Utils;
 use Nicomv\Data_Manager\Main;
 
@@ -52,7 +53,7 @@ final class Data_Manager {
 			'nmv-data-manager',
 			'nmvDataManager',
 			array(
-				'actionChallengeGet' => Main::ACTION_CHALLENGE_GET,
+				'actionChallengeGet' => Challenge_Controller::ACTION_GET,
 				'ajaxURL'            => admin_url(
 					'admin-ajax.php'
 				),
