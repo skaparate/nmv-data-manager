@@ -1,0 +1,55 @@
+:root {
+  --main-color: #fa4251;
+  --secondary-color: #808080;
+  --light-grey: #f2f2f2;
+}
+
+.table {
+  border-collapse: collapse;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0px 40px 0px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0 0px 40px 0px rgba(0, 0, 0, 0.15);
+  -webkit-box-shadow: 0 0px 40px 0px rgba(0, 0, 0, 0.15);
+  -o-box-shadow: 0 0px 40px 0px rgba(0, 0, 0, 0.15);
+  -ms-box-shadow: 0 0px 40px 0px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  text-align: center;
+}
+
+.table th,
+.table td {
+  font-weight: unset;
+  border-collapse: collapse;
+  padding: 15px;
+  border: 1px solid #dedede;
+}
+
+.table th {
+  font-size: 18px;
+  color: var(--main-color);
+  line-height: 1.4;
+  background-color: transparent;
+  padding-top: 18px;
+  padding-bottom: 18px;
+  font-weight: bold;
+}
+
+.table td {
+  font-size: 15px;
+  color: var(--secondary-color);
+  line-height: 1.4;
+}
+
+.table thead th:first-child {
+  text-align: center;
+}
+
+.table tbody tr {
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.table tbody tr:nth-child(odd) {
+  background-color: #ededed;
+  color: black;
+}
