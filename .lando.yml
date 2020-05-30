@@ -29,3 +29,7 @@ tooling:
     service: appserver
     cmd: php -d xdebug.remote_port=9000 vendor/bin/phpunit
     description: Runs PHPUnit tests in debug mode
+  purge-cache:
+    service: appserver
+    cmd: wp nmv data-manager purge-cache --path=/app/wordpress
+    description: Clears the cached data using the WP CLI command from the plugin.
