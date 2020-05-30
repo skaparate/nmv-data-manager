@@ -43,8 +43,9 @@ function nmv_data_manager_run() {
 	$main->run();
 
 	add_action( 'init', array( $main, 'on_init' ) );
-	add_action( 'wp_enqueue_scripts', array( $main, 'on_enqueue_scripts' ) );
 	add_action( 'admin_menu', array( $main, 'on_admin_menu' ) );
+	add_action( 'wp_enqueue_scripts', array( $main, 'on_enqueue_scripts' ) );
+	add_action( 'admin_enqueue_scripts', array( $main, 'on_admin_enqueue_scripts' ) );
 }
 
 add_action( 'plugins_loaded', 'nmv_data_manager_run', 0 );

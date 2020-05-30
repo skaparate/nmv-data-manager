@@ -44,11 +44,6 @@ class Main {
 	const MIN_PHP_VERSION = '7.0.0';
 
 	/**
-	 * Action performed trhough AJAX.
-	 */
-	const ACTION_CHALLENGE_GET = 'nmvdatamanager_get';
-
-	/**
 	 * Singleton instance.
 	 *
 	 * @since 1.0.0
@@ -124,6 +119,13 @@ class Main {
 	}
 
 	/**
+	 * Runs action for the admin enqueue scripts WordPress hook.
+	 */
+	public function on_admin_enqueue_scripts() {
+		$this->register_admin_scripts();
+	}
+
+	/**
 	 * Runs actions for the enqueue styles WordPress hook.
 	 */
 	public function on_enqueue_styles() {
@@ -172,10 +174,10 @@ class Main {
 	private function register_controllers() {
 		$data_service         = new Data_Service();
 		$challenge_controller = new Challenge_Controller( $data_service );
-		add_action( 'wp_ajax_' . self::ACTION_CHALLENGE_GET, array( $challenge_controller, 'get' ) );
+		add_action( 'wp_ajax_' . Challenge_Controller::ACTION_GET, array( $challenge_controller, 'get' ) );
 
 		if ( ! is_admin() ) {
-			add_action( 'wp_ajax_nopriv_' . self::ACTION_CHALLENGE_GET, array( $challenge_controller, 'get' ) );
+			add_action( 'wp_ajax_nopriv_' . Challenge_Controller::ACTION_GET, array( $challenge_controller, 'get' ) );
 		}
 	}
 
@@ -194,9 +196,68 @@ class Main {
 	 * Register scripts.
 	 */
 	private function register_scripts() {
+		$this->register_common_scripts();
 		foreach ( $this->shortcode_instances as $name => $instance ) {
 			$instance->enqueue_scripts();
 			$instance->enqueue_styles();
 		}
+		wp_enqueue_script( 'nmv-data-manager-tablemgr' );
+	}
+
+	/**
+	 * Registers admin side scripts and styles.
+	 */
+	private function register_admin_scripts() {
+		$this->register_common_scripts();
+		wp_enqueue_script(
+			'nmv-data-manager-backend',
+			NMV_DATA_MANAGER_URL . 'src/assets/js/backend.js',
+			array( 'jquery' ),
+			'1.0.0',
+			true
+		);
+		wp_enqueue_style(
+			'nmv-data-manager',
+			NMV_DATA_MANAGER_URL . 'src/assets/css/backend.css',
+			array(),
+			'1.0.0',
+			'all'
+		);
+		wp_localize_script(
+			'nmv-data-manager-backend',
+			'nmvDataManager',
+			array(
+				'ajaxURL'       => admin_url( 'admin-ajax.php' ),
+				'refreshAction' => Challenge_Controller::ACTION_GET,
+			)
+		);
+		wp_enqueue_script( 'nmv-data-manager-tablemgr' );
+	}
+
+	/**
+	 * Registers common scripts and styles for the front and back end.
+	 */
+	private function register_common_scripts() {
+		wp_enqueue_style(
+			'nmv-data-manager-fontello',
+			NMV_DATA_MANAGER_URL . 'src/assets/css/fontello.css',
+			array(),
+			'1.0.0',
+			'all'
+		);
+		wp_enqueue_style(
+			'nmv-data-manager-base',
+			NMV_DATA_MANAGER_URL . 'src/assets/css/base.css',
+			array(),
+			'1.0.0',
+			'all'
+		);
+		wp_register_script(
+			'nmv-data-manager-tablemgr',
+			NMV_DATA_MANAGER_URL . 'src/assets/js/table-filler.js',
+			array( 'jquery' ),
+			'1.0.0',
+			true
+		);
 	}
 }

@@ -31,7 +31,7 @@ class Challenge_Controller {
 	 *
 	 * @var string
 	 */
-	const ACTION_GET = 'nmv-datamanager_get';
+	const ACTION_GET = 'nmv_datamanager_get';
 
 	/**
 	 * Builds an instance of this controller.
