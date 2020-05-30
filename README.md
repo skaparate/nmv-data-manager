@@ -53,11 +53,13 @@ lando phpunitd
 
 This command runs the xdebug command so you can listen on vscode (the required configuration is provided on the [.vscode folder](#.vscode)).
 
+The command `lando purge-cache' will run the command to purge the cache used by the plugin (will make the plugin contact the REST API directly).
+
 For VSCode to work properly, I recommend the plugins:
 
-* PHP Intelephense
-* PHP Sniffer & Beatufier
-* PHP Debug, for using xdebug.
+- PHP Intelephense
+- PHP Sniffer & Beatufier
+- PHP Debug, for using xdebug.
 
 ## Running
 
@@ -71,4 +73,9 @@ The administration (wp-admin) credentials are the ones provided on the `.env` fi
 ## Sample
 
 ### Front End
+
 ![Front end shortcode displaying the requested data](/assets/img/nmv-data-manager_frontend.png "Front End Shortcode")
+
+### Back End
+
+![Back end options page, displaying the queried data](/assets/img/nmv-data-manager_backend.png "Administration page")
