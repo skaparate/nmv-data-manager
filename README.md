@@ -16,7 +16,8 @@ To setup the development environment, please install the following:
 git clone https://github.com/skaparate/nmv-data-manager/
 ```
 
-4. Start the lando containers:
+4. Copy the file [.env.example](#.env.example) as `.env`. There's should be no need to modify the `.env` file.
+5. Start the lando containers:
 
 ```
 cd nmv-data-manager

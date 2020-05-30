@@ -6,7 +6,7 @@
     "wp-coding-standards/wpcs": "*",
     "phpcompatibility/php-compatibility": "*",
     "phpcompatibility/phpcompatibility-wp": "*",
-    "phpunit/phpunit": "^9",
+    "phpunit/phpunit": "^7",
     "vlucas/phpdotenv": "^4.1"
   },
   "prefer-stable": true,

@@ -5,19 +5,21 @@
  * @package Nicomv\Data_Manager\Tests
  */
 
-$dotenv = Dotenv\Dotenv::createImmutable( NMV_DATA_MANAGER, '.env' );
+define( 'NMV_TEST_ROOT', dirname( dirname( __FILE__ ) ) );
+
+$dotenv = Dotenv\Dotenv::createImmutable( NMV_TEST_ROOT, '.env' );
 $dotenv->load();
 
-require_once NMV_DATA_MANAGER . '/vendor/autoload.php';
+require_once NMV_TEST_ROOT . '/vendor/autoload.php';
 
-$wp_test_libs = NMV_DATA_MANAGER . DIRECTORY_SEPARATOR . $_ENV['WP_TEST_LIBS_DIR'];
+$wp_test_libs = NMV_TEST_ROOT . DIRECTORY_SEPARATOR . $_ENV['WP_TEST_LIBS_DIR'];
 require_once $wp_test_libs . '/includes/functions.php';
 
 /**
  * Manually load the plugin being tested.
  */
 function _manually_load_plugin() {
-	require NMV_DATA_MANAGER . '/test-plugin.php';
+	require NMV_TEST_ROOT . '/nmv-data-manager.php';
 }
 tests_add_filter( 'muplugins_loaded', '_manually_load_plugin' );
 
