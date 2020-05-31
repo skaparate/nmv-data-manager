@@ -9,10 +9,10 @@
       data,
     })
       .done((response) => {
-        const parsed = JSON.parse(response.data.body);
+        const parsed = JSON.parse(response.data);
         nmvDataManager.fillTable($(".data-results.table"), parsed.data);
       })
-      .error((e) => console.error)
+      .error((e) => console.error(e))
       .always(() => {
         if (typeof callback === "function") {
           callback();

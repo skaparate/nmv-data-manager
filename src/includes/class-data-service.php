@@ -62,20 +62,35 @@ class Data_Service {
 		$data = get_transient( $this->cache_name );
 
 		if ( false === $data ) {
-			$data = wp_remote_get( self::APIURI );
-			if ( is_wp_error( $data ) ) {
+			$remote_data = wp_remote_get( self::APIURI );
+			if ( is_wp_error( $remote_data ) ) {
 				throw new Requests_Exception(
 					'Failed to get data from the remote API',
 					'get',
-					$data->get_error_messages(),
-					$data->get_error_code()
+					$remote_data->get_error_messages(),
+					$remote_data->get_error_code()
 				);
 			}
-			if ( false === set_transient( $this->cache_name, $data, $this->expires ) ) {
+			if ( false === set_transient( $this->cache_name, $remote_data['body'], $this->expires ) ) {
 				throw new Exception( 'Could not cache the requested data' );
 			}
+			$data = $remote_data['body'];
 		}
 
 		return $data;
+	}
+
+	/**
+	 * Magic method to retrieve class properties.
+	 *
+	 * @param string $name The name of the property to retrieve.
+	 * @return mixed The value of the property or null if it
+	 * doesn't exist.
+	 */
+	public function __get( string $name ) {
+		if ( 'cache_name' === $name ) {
+			return $this->cache_name;
+		}
+		return null;
 	}
 }
