@@ -16,7 +16,7 @@ To setup the development environment, please install the following:
 git clone https://github.com/skaparate/nmv-data-manager/
 ```
 
-4. Copy the file [.env.example](#.env.example) as `.env`. There's should be no need to modify the `.env` file.
+4. Copy the file [.env.example](.env.example) as `.env`. There's should be no need to modify the `.env` file.
 5. Start the lando containers:
 
 ```
@@ -36,7 +36,7 @@ This step installs the phpab library, used to generate the autoload script, the 
 
 ### Scripts
 
-The following scripts are provided through composer:
+The following scripts are provided **through composer**:
 
 ```
 update-autoloader: which is used to update the autoloader script whenever a new class/interface/etc is added to the source code.
@@ -46,15 +46,11 @@ update-autoloader: which is used to update the autoloader script whenever a new 
 test: runs the integration tests
 ```
 
-On the other hand, lando provides an additional command to debug tests on the containers:
+On the other hand, I setup lando to provide some additional commands:
 
-```
-lando phpunitd
-```
+- `lando phpunitd`: This command runs the xdebug command so you can listen on vscode (the required configuration is provided on the [.vscode folder](.vscode)).
 
-This command runs the xdebug command so you can listen on vscode (the required configuration is provided on the [.vscode folder](#.vscode)).
-
-The command `lando purge-cache' will run the command to purge the cache used by the plugin (will make the plugin contact the REST API directly).
+- `lando purge-cache`: Will run the command to purge the cache used by the plugin (will make the plugin contact the REST API directly).
 
 For VSCode to work properly, I recommend the plugins:
 
