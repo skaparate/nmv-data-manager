@@ -12,6 +12,7 @@
   "prefer-stable": true,
   "scripts": {
     "post-install-cmd": [
+      "mkdir tools",
       "curl -Lo tools/phpab.phar https://github.com/theseer/Autoload/releases/download/1.25.9/phpab-1.25.9.phar"
     ],
     "test": "lando php vendor/bin/phpunit",
