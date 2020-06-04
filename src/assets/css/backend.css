@@ -1,10 +1,17 @@
-.page-title {
-  font-size: 26px;
-  font-weight: bold;
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: var(--main-color);
   background-color: white;
-  padding: 15px;
   border-radius: 5px 0px 0px 0;
+  padding-left: 20px;
+}
+
+.page-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0 10px;
 }
 
 .refresh-data {
@@ -20,6 +27,7 @@
 .refresh-data:hover,
 .refresh-data:active {
   background-color: var(--main-color);
+  color: white;
 }
 
 .full-width {

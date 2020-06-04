@@ -12,13 +12,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <div class="grid-container">
 	<div class="grid-item">
-		<h2 class="page-title">
-			<i class="icon-database"></i>
-			<?php esc_html_e( 'Data Manager', 'nmv-data-manager' ); ?>
-		</h2>
-		<button class="refresh-data" title="<?php esc_html_e( 'Reload the data', 'nmv-data-manager' ); ?>">
-			<?php esc_html_e( 'Refresh', 'nmv-data-manager' ); ?>
-		</button>
+		<header>
+			<img
+				class="ff-logo"
+				src="<?php echo esc_url( NMV_DATA_MANAGER_URL . '/src/assets/img/formidable-forms-logo.png' ); ?>"
+				alt="<?php esc_html__( 'Formidable Forms Logo', 'nmv-data-manager' ); ?>" width="150" />
+			<h2 class="page-title">
+				<?php esc_html_e( 'Data Manager', 'nmv-data-manager' ); ?>
+			</h2>
+			<button class="refresh-data" title="<?php esc_html_e( 'Reload the data', 'nmv-data-manager' ); ?>">
+				<?php esc_html_e( 'Refresh', 'nmv-data-manager' ); ?>
+			</button>
+		</header>
 	</div>
 </div>
 <div class="grid-container">
