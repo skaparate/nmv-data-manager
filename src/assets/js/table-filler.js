@@ -1,5 +1,12 @@
 (($) => {
-  nmvDataManager.fillTable = function (table, data, title) {
+  /**
+   * Fills a HTML table with the provided data.
+   *
+   * @param {jQuery} table The table that will be filled with the data.
+   * @param {object} data The data used to fill the table.
+   * @param {string} title The optional title to be shown on the thead.
+   */
+  function tableFiller(table, data, title) {
     const tbody = table.find("tbody");
     tbody.html("");
     const thead = table.find("thead");
@@ -27,5 +34,7 @@
         </tr>
         `);
     }
-  };
+  }
+
+  nmvDataManager.fillTable = tableFiller;
 })(jQuery);
