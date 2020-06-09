@@ -15,8 +15,8 @@
       "mkdir tools",
       "curl -Lo tools/phpab.phar https://github.com/theseer/Autoload/releases/download/1.25.9/phpab-1.25.9.phar"
     ],
-    "test": "lando php vendor/bin/phpunit",
-    "update-autoloader": "lando php tools/phpab.phar -o src/autoload.php src/"
+    "test": "vendor/bin/phpunit",
+    "update-autoloader": "php tools/phpab.phar -o src/autoload.php src/"
   },
   "scripts-descriptions": {
     "test": "Run the project tests",
