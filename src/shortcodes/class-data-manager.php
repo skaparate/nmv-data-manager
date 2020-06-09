@@ -8,7 +8,7 @@
 namespace Nicomv\Data_Manager\Shortcodes;
 
 use Nicomv\Data_Manager\Controllers\Challenge_Controller;
-use Nicomv\Data_Manager\Includes\Template_Utils;
+use Nicomv\Data_Manager\Includes\Utils\Template_Utils;
 
 /**
  * Shortcode used to display data on the front end.

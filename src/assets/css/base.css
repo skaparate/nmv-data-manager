@@ -53,3 +53,7 @@
   background-color: #ededed;
   color: black;
 }
+
+a.with-icon {
+  display: inline-block;
+}

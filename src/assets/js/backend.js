@@ -1,16 +1,31 @@
 (($) => {
+  const getSortArgs = () => {
+    const parts = window.location.search.split("?");
+    if (parts.length === 1) {
+      return "";
+    }
+    return parts[1]
+      .split("&")
+      .filter((i) => {
+        return /^(sort_by|sort_dir)/.test(i);
+      })
+      .join("&");
+  };
+
   const refresh = (callback) => {
+    const url = `${nmvDataManager.ajaxURL}?${getSortArgs()}`;
     const data = {
       action: nmvDataManager.refreshAction,
     };
     $.ajax({
-      url: nmvDataManager.ajaxURL,
-      dataType: "json",
+      url,
       data,
     })
       .done((response) => {
-        const parsed = JSON.parse(response.data);
-        nmvDataManager.fillTable($(".data-results.table"), parsed.data);
+        const $table = $(".data-results table");
+        $table.find("tbody").remove();
+        const $newBody = $(response).find("tbody");
+        $newBody.insertAfter($table.find("thead"));
       })
       .error((e) => console.error(e))
       .always(() => {
@@ -21,8 +36,6 @@
   };
 
   $(document).ready(() => {
-    refresh();
-
     $(".refresh-data").on("click", function () {
       const $this = $(this);
       $this.prop("disabled", true);

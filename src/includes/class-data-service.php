@@ -56,9 +56,9 @@ class Data_Service {
 	 *
 	 * @throws Exception If the data cannot be cached.
 	 * @throws Requests_Exception If the remote API cannot be reached.
-	 * @return object The requested data.
+	 * @return Data_Result The requested data.
 	 */
-	public function get_data() {
+	public function get_data(): Data_Result {
 		$data = get_transient( $this->cache_name );
 
 		if ( false === $data ) {
@@ -71,10 +71,12 @@ class Data_Service {
 					$remote_data->get_error_code()
 				);
 			}
-			if ( false === set_transient( $this->cache_name, $remote_data['body'], $this->expires ) ) {
+
+			$data = Data_Result::from_json( $remote_data['body'] );
+
+			if ( false === set_transient( $this->cache_name, $data, $this->expires ) ) {
 				throw new Exception( 'Could not cache the requested data' );
 			}
-			$data = $remote_data['body'];
 		}
 
 		return $data;

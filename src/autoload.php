@@ -10,8 +10,13 @@ spl_autoload_register(
                 'commands' => '/includes/class-commands.php',
                 'nicomv\\data_manager\\controllers\\admin_controller' => '/controllers/class-admin-controller.php',
                 'nicomv\\data_manager\\controllers\\challenge_controller' => '/controllers/class-challenge-controller.php',
+                'nicomv\\data_manager\\includes\\comparer' => '/includes/class-comparer.php',
+                'nicomv\\data_manager\\includes\\data_result' => '/includes/class-data-result.php',
                 'nicomv\\data_manager\\includes\\data_service' => '/includes/class-data-service.php',
-                'nicomv\\data_manager\\includes\\template_utils' => '/includes/class-template-utils.php',
+                'nicomv\\data_manager\\includes\\sortable' => '/includes/class-sortable.php',
+                'nicomv\\data_manager\\includes\\sorter' => '/includes/class-sorter.php',
+                'nicomv\\data_manager\\includes\\utils\\data_result_helper' => '/includes/utils/class-data-result-helper.php',
+                'nicomv\\data_manager\\includes\\utils\\template_utils' => '/includes/utils/class-template-utils.php',
                 'nicomv\\data_manager\\main' => '/class-main.php',
                 'nicomv\\data_manager\\shortcodes\\data_manager' => '/shortcodes/class-data-manager.php'
             );

@@ -8,15 +8,9 @@
     $.ajax({
       url: nmvDataManager.ajaxURL,
       data,
-      dataType: "json",
     })
       .done((response) => {
-        const parsed = JSON.parse(response.data);
-        nmvDataManager.fillTable(
-          $(".nmv-data-manager--results"),
-          parsed.data,
-          parsed.title
-        );
+        $(".nmv-data-manager").append(response);
       })
       .error((e) => {
         console.error("Failed to contact the server:", e);

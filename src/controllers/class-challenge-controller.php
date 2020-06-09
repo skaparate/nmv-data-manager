@@ -7,7 +7,12 @@
 
  namespace Nicomv\Data_Manager\Controllers;
 
+use Nicomv\Data_Manager\Includes\Data_Result;
 use Nicomv\Data_Manager\Includes\Data_Service;
+use Nicomv\Data_Manager\Includes\Sortable;
+use Nicomv\Data_Manager\Includes\Sorter;
+use Nicomv\Data_Manager\Includes\Utils\Data_Result_Helper;
+use Nicomv\Data_Manager\Includes\Utils\Template_Utils;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	die;
@@ -48,8 +53,24 @@ class Challenge_Controller {
 	 */
 	public function get() {
 		error_log( 'DATA_MANAGER, Challenge_Controller - Get action' );
-		$data = $this->data_service->get_data();
-		echo wp_json_encode( array( 'data' => $data ) );
+		$sortable = Sortable::from_get_request();
+		error_log( 'DATA_MANAGER, Challenge_Controller#get - ' . $sortable );
+
+		$data           = $this->data_service->get_data();
+		$data           = $data->with_content( Sorter::sort_data( $sortable, $data->content ) );
+		$header_urls    = Data_Result_Helper::build_headers(
+			$sortable
+		);
+		$exclude_footer = true;
+		Template_Utils::get_template(
+			'table-results',
+			compact(
+				'header_urls',
+				'data',
+				'exclude_footer'
+			)
+		);
+
 		wp_die();
 	}
 }

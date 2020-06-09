@@ -5,6 +5,8 @@
  * @package Nicomv/Data_Manager/Templates
  */
 
+use Nicomv\Data_Manager\Includes\Utils\Template_Utils;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
@@ -27,33 +29,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	</div>
 </div>
 <div class="grid-container">
-	<div class="grid-item">
-		<table class="data-results table">
-			<thead>
-				<tr>
-					<th>ID</th>
-					<th><?php esc_html_e( 'First Name', 'nmv-data-manager' ); ?></th>
-					<th><?php esc_html_e( 'Last Name', 'nmv-data-manager' ); ?></th>
-					<th><?php esc_html_e( 'Email', 'nmv-data-manager' ); ?></th>
-					<th><?php esc_html_e( 'Date', 'nmv-data-manager' ); ?></th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td></td>
-					<td><?php esc_html_e( 'No results', 'nmv-data-manager' ); ?></td>
-				</tr>
-			</tbody>
-			<tfoot>
-				<tr>
-					<th>ID</th>
-					<th><?php esc_html_e( 'First Name', 'nmv-data-manager' ); ?></th>
-					<th><?php esc_html_e( 'Last Name', 'nmv-data-manager' ); ?></th>
-					<th><?php esc_html_e( 'Email', 'nmv-data-manager' ); ?></th>
-					<th><?php esc_html_e( 'Date', 'nmv-data-manager' ); ?></th>
-				</tr>
-			</tfoot>
-		</table>
+	<div class="grid-item data-results">
+		<?php Template_Utils::get_template( 'table-results', $context ); ?>
 	</div>
 	<div class="grid-item"></div>
 	<div class="grid-item"></div>

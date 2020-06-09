@@ -3,7 +3,7 @@
  * File that contains the plugin orchestrator class.
  *
  * @since 1.0.0
- * @package Nicomv/Data_Manager/Includes
+ * @package Nicomv/Data_Manager
  */
 
 namespace Nicomv\Data_Manager;
@@ -47,7 +47,7 @@ class Main {
 	 * Singleton instance.
 	 *
 	 * @since 1.0.0
-	 * @var Nicomv/Data_Manager/Includes/Main
+	 * @var Nicomv/Data_Manager/Main
 	 */
 	private static $instance = null;
 
@@ -149,8 +149,8 @@ class Main {
 	 */
 	public function on_admin_menu() {
 		error_log( 'DATA_MANAGER, Main - Administration page ' );
-		$admin_controller = new Admin_Controller();
-		add_menu_page(
+		$admin_controller = new Admin_Controller( new Data_Service() );
+		$hook             = add_menu_page(
 			__( 'NMV Data Manager', 'nmv-data-manager' ),
 			__( 'Data Manager', 'nmv-data-manager' ),
 			'manage_options',
@@ -159,6 +159,8 @@ class Main {
 			'',
 			null
 		);
+
+		add_action( 'load-' . $hook, array( $admin_controller, 'load' ) );
 	}
 
 	/**
@@ -229,6 +231,7 @@ class Main {
 			array(
 				'ajaxURL'       => admin_url( 'admin-ajax.php' ),
 				'refreshAction' => Challenge_Controller::ACTION_GET,
+				'nonce'         => 'nonce' . Challenge_Controller::ACTION_GET,
 			)
 		);
 		wp_enqueue_script( 'nmv-data-manager-tablemgr' );
@@ -251,13 +254,6 @@ class Main {
 			array(),
 			'1.0.0',
 			'all'
-		);
-		wp_register_script(
-			'nmv-data-manager-tablemgr',
-			NMV_DATA_MANAGER_URL . 'src/assets/js/table-filler.js',
-			array( 'jquery' ),
-			'1.0.0',
-			true
 		);
 	}
 }
