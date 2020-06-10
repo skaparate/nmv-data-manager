@@ -48,7 +48,7 @@ class Data_Result implements JsonSerializable {
 	 * @param array  $headers The table headers.
 	 * @param array  $content The actual content.
 	 */
-	private function __construct( $title, $headers, $content ) {
+	public function __construct( $title, $headers, $content ) {
 		$this->title   = $title;
 		$this->headers = $headers;
 		$this->content = $content;
