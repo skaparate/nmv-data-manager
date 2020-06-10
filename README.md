@@ -42,7 +42,7 @@ I've setup lando to provide some additional commands:
 
 - `lando purge-cache`: Will run the command to purge the cache used by the plugin (will make the plugin contact the REST API directly).
 
-- `lando update-autoloader`: Will update the autoloader script for the plugin (`src/autoloader.php').
+- `lando update-autoloader`: Will update the autoloader script for the plugin (`src/autoloader.php`).
 
 - `lando test`: Runs the project tests. It's basically a shortcut to `composer test`.
 
