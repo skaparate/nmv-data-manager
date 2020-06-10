@@ -5,6 +5,7 @@
  * @package Nicomv/Data_Manager/Tests
  */
 
+use Nicomv\Data_Manager\Includes\Data_Result;
 use Nicomv\Data_Manager\Includes\Data_Service;
 use PHPUnit\Framework\TestCase;
 
@@ -16,7 +17,7 @@ class Data_Service_Test extends TestCase {
 	/**
 	 * The expected retrieved data.
 	 *
-	 * @var mixed
+	 * @var Data_Result
 	 */
 	private $expected_data;
 
@@ -24,7 +25,8 @@ class Data_Service_Test extends TestCase {
 	 * Setups the tests.
 	 */
 	public function setUp() {
-		$this->expected_data = file_get_contents( NMV_TEST_ROOT . '/tests/data.json' );
+		$json_string         = file_get_contents( NMV_TEST_ROOT . '/tests/data.json' );
+		$this->expected_data = Data_Result::from_json( $json_string );
 		$svc                 = new Data_Service();
 		delete_transient( $svc->cache_name );
 	}
@@ -58,7 +60,11 @@ class Data_Service_Test extends TestCase {
 		$cache_name = $svc->cache_name;
 
 		// First, cache the test data.
-		$test_data = 'it is the cached data';
+		$test_data = new Data_Result(
+			'',
+			array(),
+			array( 'it is the cached data' )
+		);
 		$this->assertTrue( set_transient( $cache_name, $test_data, 30 ) );
 
 		// Check the data to make sure it's not the same.
