@@ -62,7 +62,7 @@ class Data_Result_Filter {
 		}
 
 		if ( is_email( $val ) ) {
-			return self::search_data( $data, 'email', $val );
+			return $data->with_content( self::search_data( $data, 'email', $val ) );
 		}
 
 		// It may be the first or last name, so we concat them.
