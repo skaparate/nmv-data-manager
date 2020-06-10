@@ -32,25 +32,19 @@ This can take some time, since it has to download the required containers, plus 
 lando composer install
 ```
 
-This step installs the phpab library, used to generate the autoload script, the WordPress standards libraries and PHPUnit (for unit testing).
+This step installs the `phpab` library, used to generate the autoload script, the WordPress standards libraries and PHPUnit (for unit testing).
 
 ### Scripts
 
-The following scripts are provided **through composer**:
-
-```
-update-autoloader: which is used to update the autoloader script whenever a new class/interface/etc is added to the source code.
-```
-
-```
-test: runs the integration tests
-```
-
-On the other hand, I setup lando to provide some additional commands:
+I've setup lando to provide some additional commands:
 
 - `lando phpunitd`: This command runs the xdebug command so you can listen on vscode (the required configuration is provided on the [.vscode folder](.vscode)).
 
 - `lando purge-cache`: Will run the command to purge the cache used by the plugin (will make the plugin contact the REST API directly).
+
+- `lando update-autoloader`: Will update the autoloader script for the plugin (`src/autoloader.php').
+
+- `lando test`: Runs the project tests. It's basically a shortcut to `composer test`.
 
 For VSCode to work properly, I recommend the plugins:
 

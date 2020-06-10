@@ -33,3 +33,11 @@ tooling:
     service: appserver
     cmd: wp nmv data-manager purge-cache --path=/app/wordpress
     description: Clears the cached data using the WP CLI command from the plugin.
+  update-autoloader:
+    service: appserver
+    cmd: composer update-autoloader
+    description: Regenerates the autoloader script for the project.
+  test:
+    service: appserver
+    cmd: composer test
+    description: Runs the tests for the plugin.
