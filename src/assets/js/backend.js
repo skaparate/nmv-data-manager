@@ -73,7 +73,6 @@
    */
   const onRefresh = (e) => {
     const $this = $(e.target);
-    console.log("$this:", $this);
     $this.prop("disabled", true);
     refresh((error) => {
       $this.prop("disabled", false);
@@ -95,6 +94,7 @@
     $this.prop("disabled", true);
     refresh((error) => {
       $this.prop("disabled", false);
+      $(".data-search").addClass("with-results");
     }, search);
   };
 
@@ -117,7 +117,7 @@
   const setSearchString = () => {
     const args = getUrlPath();
     const search = args.filter((i) => i.startsWith("search="));
-    if (search) {
+    if (1 <= search.length) {
       $(".data-search--input").val(search[0].split("=")[1]);
       $(".data-search").addClass("with-results");
     }
