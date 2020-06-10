@@ -89,4 +89,4 @@ The administration (wp-admin) credentials are the ones provided on the `.env` fi
 
 ![Filter the results, the simple version](/assets/img/backend-search_simple.png "Filter Results")
 
-![Filter the results, the advanced version](/assets/img/backend-sort_by_id.png "Filter results, advanced")
+![Filter the results, the advanced version](/assets/img/backend-search_advanced.png "Filter results, advanced")
