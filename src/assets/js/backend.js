@@ -87,6 +87,7 @@
   const onSearch = (e) => {
     e.preventDefault();
     const search = $(".data-search--input").val();
+    console.log("Searching:", search);
     if (!search) {
       return false;
     }
@@ -126,7 +127,16 @@
   $(document).ready(() => {
     setSearchString();
     $(".refresh-data").on("click", onRefresh);
-    $(".data-search").on("submit", onSearch);
+    $(".data-search").submit(onSearch);
+    // For some reason, jQuery doesn't "catch" the submit
+    // unless we trigger it.
+    $(".data-search--input").on("keydown", (e) => {
+      if ("Enter" === e.key) {
+        $(".data-search").trigger("submit");
+        return false;
+      }
+      return true;
+    });
     $(".data-search--cancel").on("click", onClearSearch);
   });
 })(jQuery);
