@@ -1,23 +1,26 @@
 header {
   display: flex;
   align-items: center;
-  justify-content: center;
   color: var(--main-color);
-  background-color: white;
   border-radius: 5px 0px 0px 0;
-  padding-left: 20px;
+}
+
+header img {
+  background-color: white;
+  padding: 0.4rem;
 }
 
 .page-title {
   font-size: 18px;
   font-weight: bold;
-  margin: 0 10px;
+  padding: 1.2rem;
+  background-color: white;
 }
 
 .refresh-data {
   background-color: white;
   cursor: pointer;
-  padding: 1.1rem;
+  padding: 1.14rem;
   border: none;
   border-radius: 0 5px 0px 0;
   border-left: 1px solid #dedede;
@@ -30,20 +33,110 @@ header {
   color: white;
 }
 
-.full-width {
-  grid-area: fullwidth;
+.header-left {
+  grid-area: header-left;
+}
+
+.header-right {
+  grid-area: header-right;
+}
+
+.row {
+  grid-area: row;
+  margin-top: 15px;
 }
 
 .grid-container {
   display: grid;
   grid-column-gap: 30px;
-  grid-template-columns:
-    fullwidth
-    auto auto auto;
+  grid-template-areas:
+    "header-left header-left header-right"
+    "row row row";
+  margin: 1rem;
+  padding: 1rem;
 }
 
 .grid-container .grid-item {
-  padding: 15px;
   display: flex;
   align-items: center;
+}
+
+.flex-right {
+  justify-content: flex-end;
+}
+
+.data-search .data-search--input {
+  padding: 0.6rem;
+  font-size: 1rem;
+  border-radius: 5px 0 0 5px;
+  border-color: white;
+}
+
+.data-search .data-search--input:focus {
+  border: 1px solid var(--main-color);
+  box-shadow: none;
+  outline: none;
+}
+
+.data-search--submit {
+  padding: 1rem;
+  background-color: white;
+  font-size: 1rem;
+  border-radius: 0 5px 5px 0;
+  border: none;
+  border-left: 1px solid #dedede;
+}
+
+.data-search--submit:hover {
+  background-color: var(--main-color);
+  color: white;
+}
+
+@media screen and (max-width: 1021px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+  }
+
+  .page-title {
+    margin: 0;
+    padding-right: 1.45rem;
+  }
+
+  .refresh-data {
+    padding-right: 5.15rem;
+    border-left: initial;
+    border-radius: 0 0 5px 5px;
+  }
+}
+
+@media screen and (max-width: 1106px) {
+  .data-search {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .data-search .data-search--input {
+    border-radius: 5px 5px 0 0;
+  }
+
+  .data-search--submit {
+    border-radius: 0 0 5px 5px;
+    border-left: none;
+    border-top: 1px solid #dedede;
+  }
+}
+
+@media screen and (max-width: 544px) {
+  .grid-container {
+    grid-template-areas:
+      "header-left"
+      "header-right"
+      "row";
+  }
+
+  .flex-right {
+    justify-content: flex-start;
+  }
 }

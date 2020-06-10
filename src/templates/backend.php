@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 
 <div class="grid-container">
-	<div class="grid-item">
+	<div class="header-left">
 		<header>
 			<img
 				class="ff-logo"
@@ -27,11 +27,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 			</button>
 		</header>
 	</div>
-</div>
-<div class="grid-container">
-	<div class="grid-item data-results">
+	<div class="header-right grid-item flex-right">
+		<form class="data-search" action="<?php echo esc_url( $context['search_action'] ); ?>">
+			<input
+				class="data-search--input"
+				type="text"
+				name="search"
+				placeholder="<?php esc_attr_e( 'I\'m looking for...', 'nmv-data-manager' ); ?>" /><button class="data-search--submit" title="<?php esc_attr_e( 'Filter the results on the table', 'nmv-data-manager' ); ?>">
+				<i class="icon-search"></i>
+				<span class="text"><?php esc_html_e( 'Search', 'nmv-data-manager' ); ?></span>
+			</button>
+		</form>
+	</div>
+	<div class="row data-results">
 		<?php Template_Utils::get_template( 'table-results', $context ); ?>
 	</div>
-	<div class="grid-item"></div>
-	<div class="grid-item"></div>
 </div>
