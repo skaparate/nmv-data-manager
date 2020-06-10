@@ -4,6 +4,18 @@ A plugin to display data retrieved from a specific REST endpoint.
 
 This plugin was requested for a specific task by Formidable Forms.
 
+The front end simply shows the requested data in a table.
+
+The adminitration page has the following options:
+
+- Sort the results by clicking on the headers.
+- Refresh the data without reloading the page.
+- Filter the results using the search bar. It works like this:
+  - If the input is an integer, the results are filtered by the id.
+  - If the input is an email, the results are filtered by the email.
+  - If the input is a string, then the results are filtered by first name and/or last name.
+  - Lastly, there's some kind of advanced search, where you can input a string like `id:9` and the results will be filtered by the `id` that has a _9_ as value.
+
 ## Development
 
 To setup the development environment, please install the following:
@@ -69,4 +81,12 @@ The administration (wp-admin) credentials are the ones provided on the `.env` fi
 
 ### Back End
 
-![Back end options page, displaying the queried data](/assets/img/nmv-data-manager_backend.png "Administration page")
+![Back end options page, displaying the queried data](/assets/img/backend-default.png "Administration page")
+
+![Sorting results by ID](/assets/img/backend-sort_by_id.png "Sorting by ID")
+
+![Sorting results by First Name](/assets/img/backend-sort_by_firstname.png "Sorting by First Name")
+
+![Filter the results, the simple version](/assets/img/backend-search_simple.png "Filter Results")
+
+![Filter the results, the advanced version](/assets/img/backend-sort_by_id.png "Filter results, advanced")
