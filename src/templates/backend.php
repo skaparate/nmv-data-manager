@@ -28,7 +28,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</header>
 	</div>
 	<div class="header-right grid-item flex-right">
-		<form class="data-search" action="<?php echo esc_url( $context['search_action'] ); ?>">
+		<form class="data-search">
 			<input
 				class="data-search--input"
 				type="text"
