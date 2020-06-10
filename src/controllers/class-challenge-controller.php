@@ -11,6 +11,7 @@ use Nicomv\Data_Manager\Includes\Data_Result;
 use Nicomv\Data_Manager\Includes\Data_Service;
 use Nicomv\Data_Manager\Includes\Sortable;
 use Nicomv\Data_Manager\Includes\Sorter;
+use Nicomv\Data_Manager\Includes\Utils\Data_Result_Filter;
 use Nicomv\Data_Manager\Includes\Utils\Data_Result_Helper;
 use Nicomv\Data_Manager\Includes\Utils\Template_Utils;
 
@@ -57,6 +58,7 @@ class Challenge_Controller {
 		error_log( 'DATA_MANAGER, Challenge_Controller#get - ' . $sortable );
 
 		$data           = $this->data_service->get_data();
+		$data           = Data_Result_Filter::filter_data( $data );
 		$data           = $data->with_content( Sorter::sort_data( $sortable, $data->content ) );
 		$header_urls    = Data_Result_Helper::build_headers(
 			$sortable

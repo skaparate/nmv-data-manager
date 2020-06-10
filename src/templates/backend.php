@@ -23,18 +23,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<?php esc_html_e( 'Data Manager', 'nmv-data-manager' ); ?>
 			</h2>
 			<button class="refresh-data" title="<?php esc_html_e( 'Reload the data', 'nmv-data-manager' ); ?>">
+				<i class="icon-arrows-cw"></i>
 				<?php esc_html_e( 'Refresh', 'nmv-data-manager' ); ?>
 			</button>
 		</header>
 	</div>
 	<div class="header-right grid-item flex-right">
 		<form class="data-search">
-			<input
-				class="data-search--input"
-				type="text"
-				name="search"
-				placeholder="<?php esc_attr_e( 'I\'m looking for...', 'nmv-data-manager' ); ?>" /><button class="data-search--submit" title="<?php esc_attr_e( 'Filter the results on the table', 'nmv-data-manager' ); ?>">
-				<i class="icon-search"></i>
+			<div class="icon-overlay-right">
+				<input
+					class="data-search--input"
+					type="text"
+					name="search"
+					placeholder="<?php esc_attr_e( 'I\'m looking for...', 'nmv-data-manager' ); ?>" /><button class="data-search--cancel"><i class="icon-cancel"></i>
+					<span class="sr-only"><?php esc_html_e( 'Clear the search', 'nmv-data-manager' ); ?></span>
+				</button>
+			</div><button class="data-search--submit" title="<?php esc_attr_e( 'Filter the results on the table', 'nmv-data-manager' ); ?>">
+					<i class="icon-search"></i>
 				<span class="text"><?php esc_html_e( 'Search', 'nmv-data-manager' ); ?></span>
 			</button>
 		</form>

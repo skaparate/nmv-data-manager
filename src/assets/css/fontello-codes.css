@@ -2,3 +2,5 @@
 .icon-down-dir:before { content: '\e800'; } /* '' */
 .icon-up-dir:before { content: '\e801'; } /* '' */
 .icon-search:before { content: '\e802'; } /* '' */
+.icon-arrows-cw:before { content: '\e803'; } /* '' */
+.icon-cancel:before { content: '\e804'; } /* '' */

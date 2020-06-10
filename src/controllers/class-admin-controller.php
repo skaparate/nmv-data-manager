@@ -11,6 +11,7 @@ use Nicomv\Data_Manager\Includes\Sortable;
 use Nicomv\Data_Manager\Includes\Utils\Template_Utils;
 use Nicomv\Data_Manager\Includes\Data_Service;
 use Nicomv\Data_Manager\Includes\Sorter;
+use Nicomv\Data_Manager\Includes\Utils\Data_Result_Filter;
 use Nicomv\Data_Manager\Includes\Utils\Data_Result_Helper;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -44,6 +45,7 @@ class Admin_Controller {
 		$sortable    = Sortable::from_get_request();
 		$header_urls = Data_Result_Helper::build_headers( $sortable, $current_url );
 		$data        = $this->data_service->get_data();
+		$data        = Data_Result_Filter::filter_data( $data );
 		$data        = $data->with_content( Sorter::sort_data( $sortable, $data->content ) );
 		Template_Utils::get_template(
 			'backend',
